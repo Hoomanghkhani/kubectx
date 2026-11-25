@@ -67,9 +67,9 @@ func deleteContext(name string) (deleteName string, wasActiveContext bool, err e
 		if cur == "" {
 			return deleteName, false, errors.New("can't use '.' as the no active context is set")
 		}
-		wasActiveContext = true
 		name = cur
 	}
+	wasActiveContext = cur != "" && name == cur
 
 	exists, err := kc.ContextExists(name)
 	if err != nil {
